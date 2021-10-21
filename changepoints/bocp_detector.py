@@ -99,7 +99,7 @@ class BayesianDetector:
     def detect(self, tail_slope, min_tail_probability):
         time_since_last_cp = self._t - self._last_cp
         tail = time_since_last_cp * tail_slope
-        tail_probability = np.sum(self._growth_probs[int(time_since_last_cp):])
+        tail_probability = np.sum(self._growth_probs[int(tail):])
         if tail_probability < min_tail_probability:
             MAP = np.argmax(self._growth_probs)
             self._last_cp = self._t - MAP
